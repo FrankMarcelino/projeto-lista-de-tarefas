@@ -78,13 +78,10 @@ select {
     margin-right: .3rem;
 }
 
-#apagar {
+#btn-cancelar {
     margin-top: 1rem;
 }
 
-#apagar {
-    margin-top: 1rem;
-}
 
 /* menu de ferramentas */
 #menu-ferramentas {
@@ -108,6 +105,7 @@ select {
 
 #procurar form {
     display: flex;
+    
 }
 
 #procurar input {

@@ -122,3 +122,34 @@ select {
 .filtro select {
     flex: 1;
 }
+
+/* lista de tarefas */
+
+.tarefas {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+    transition: .3s;
+}
+
+.tarefas h3 {
+    flex: 1;
+    font-size: .9rem;
+}
+
+.tarefas button {
+    margin-left: .4rem;
+}
+
+.feito {
+    background-color: aquamarine;
+
+}
+
+.feito h3 {
+    color: #fff;
+    text-decoration: line-through;
+    font-style: italic;
+}

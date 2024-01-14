@@ -23,7 +23,7 @@ const saveTodo = (text) => {
     todo.appendChild(doneBtn)
 
     const editBtn = document.createElement('button')
-    editBtn.classList.add('tarefa-editada')
+    editBtn.classList.add('tarefa-edita')
     editBtn.innerText = '✏️'
     todo.appendChild(editBtn)
 
@@ -35,6 +35,12 @@ const saveTodo = (text) => {
     todoList.appendChild(todo)
     todoInput.value = ''
     todoInput.focus()
+}
+
+const toggleForms = () => {
+    editForm.classList.toggle('hide')
+    todoForm.classList.toggle('hide')
+    todoList.classList.toggle('hide')
 }
 // eventos
 todoForm.addEventListener('submit', (e) => {
@@ -53,6 +59,10 @@ document.addEventListener('click', (elemento) => {
 
     if(targetElemento.classList.contains('tarefa-finalizada')){
         parentElemento.classList.toggle('feito')
+    }
+
+    if(targetElemento.classList.contains('tarefa-edita')){
+        toggleForms()
     }
 
     if(targetElemento.classList.contains('tarefa-remove')){

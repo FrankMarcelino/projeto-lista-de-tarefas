@@ -3,8 +3,11 @@ const todoForm = document.querySelector('#lista-tarefas-forms')
 const todoInput = document.querySelector('#form-input')
 const todoList = document.querySelector('#lista-tarefas')
 const editForm = document.querySelector('#edita-form')
+const editInput = document.querySelector('#edit-input')
 const cancelEditbtn = document.querySelector('#btn-cancelar')
 
+
+let oldInputValue
 // funções
 const saveTodo = (text) => {
 
@@ -15,7 +18,7 @@ const saveTodo = (text) => {
     todoTitle.innerText = text
     todo.appendChild(todoTitle)
     
-    console.log(todo)
+
 
     const doneBtn = document.createElement('button')
     doneBtn.classList.add('tarefa-finalizada')
@@ -42,6 +45,23 @@ const toggleForms = () => {
     todoForm.classList.toggle('hide')
     todoList.classList.toggle('hide')
 }
+
+const updateTodo = (text) => {
+
+    const todos = document.querySelectorAll('#lista-tarefas')
+
+    todos.forEach((todo) => {
+
+        let todoTitle = todo.querySelector('h3')
+
+        console.log(todoTitle)
+
+        if(todoTitle.innerText === oldInputValue) {
+            todoTitle.innerText = text
+        }
+    })
+} 
+
 // eventos
 todoForm.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -57,15 +77,43 @@ document.addEventListener('click', (elemento) => {
     const targetElemento = elemento.target
     const parentElemento = targetElemento.closest('div')
 
+    let todoTitle
+
+    if(parentElemento && parentElemento.querySelector('h3')) {
+        todoTitle = parentElemento.querySelector('h3').innerText
+    }
+
     if(targetElemento.classList.contains('tarefa-finalizada')){
         parentElemento.classList.toggle('feito')
     }
 
     if(targetElemento.classList.contains('tarefa-edita')){
         toggleForms()
+
+        editInput.value = todoTitle
+        oldInputValue = todoTitle
     }
 
     if(targetElemento.classList.contains('tarefa-remove')){
         parentElemento.remove()
     }
+})
+
+cancelEditbtn.addEventListener('clcik', (elemento) => {
+    elemento.preventDefault()
+
+    toggleForms()
+})
+
+editForm.addEventListener('submit', (elemento) => {
+    elemento.preventDefault()
+
+    const editInputValue = editInput.value
+
+    if(editInputValue) {
+
+        updateTodo(editInputValue)
+    }
+
+    toggleForms()
 })
